@@ -31,9 +31,9 @@ public class ListeMediumSerialisation extends Serialisation {
         for(Medium m : listMedium){
             JsonObject jsonMedium = new JsonObject();
             jsonMedium.addProperty("id", m.getId());
-            jsonMedium.addProperty("nom", m.getDenomination());
-            jsonMedium.addProperty("prenom", m.getGenre());
-            jsonMedium.addProperty("mail", m.getPresentation());
+            jsonMedium.addProperty("denomination", m.getDenomination());
+            jsonMedium.addProperty("genre", m.getGenre());
+            jsonMedium.addProperty("presentation", m.getPresentation());
             if(m instanceof Astrologue){
                 jsonMedium.addProperty("type", "astrologue");
                 jsonMedium.addProperty("formation", ((Astrologue) m).getFormation());
