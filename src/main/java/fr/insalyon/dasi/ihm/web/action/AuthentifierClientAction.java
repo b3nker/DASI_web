@@ -1,6 +1,7 @@
 package fr.insalyon.dasi.ihm.web.action;
 
 import fr.insalyon.dasi.metier.modele.Client;
+import fr.insalyon.dasi.metier.modele.Employe;
 import fr.insalyon.dasi.metier.service.ServiceAuthentification;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,7 @@ public class AuthentifierClientAction extends Action {
     @Override
     public void executer(HttpServletRequest request) {
         
-        String login = request.getParameter("login");
+        String login = request.getParameter("email");
         String password = request.getParameter("password");
 
         ServiceAuthentification serviceAuth = new ServiceAuthentification();
@@ -29,6 +30,18 @@ public class AuthentifierClientAction extends Action {
         }
         else {
             session.removeAttribute("idClient");
+        }
+        
+        Employe employe = serviceAuth.authentifierEmploye(login, password);
+
+        request.setAttribute("employe", employe);
+        
+        
+        if (employe != null) {
+            session.setAttribute("idEmploye", employe.getId());
+        }
+        else {
+            session.removeAttribute("idEmploye");
         }
     }
     

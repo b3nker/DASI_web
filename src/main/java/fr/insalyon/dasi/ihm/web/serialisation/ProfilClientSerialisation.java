@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import fr.insalyon.dasi.metier.modele.Client;
+import fr.insalyon.dasi.metier.modele.Employe;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +20,11 @@ public class ProfilClientSerialisation extends Serialisation {
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Client client = (Client)request.getAttribute("client");
+        Employe employe = (Employe)request.getAttribute("employe");
         
         JsonObject container = new JsonObject();
 
-        Boolean connexion = (client != null);
+        Boolean connexion = (client != null || employe != null);
         container.addProperty("connexion", connexion);
 
         if (client != null) {
@@ -33,6 +35,14 @@ public class ProfilClientSerialisation extends Serialisation {
             jsonClient.addProperty("mail", client.getAdresseEmail());
 
             container.add("client", jsonClient);
+        } else if (employe != null) {
+            JsonObject jsonEmploye = new JsonObject();
+            jsonEmploye.addProperty("id", employe.getId());
+            jsonEmploye.addProperty("nom", employe.getNom());
+            jsonEmploye.addProperty("numero de telephone", employe.getNumeroTelephone());
+            jsonEmploye.addProperty("genre", employe.getGenre());
+            
+            container.add("employe", jsonEmploye);
         }
 
         response.setContentType("application/json;charset=UTF-8");
