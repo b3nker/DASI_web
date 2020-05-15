@@ -10,11 +10,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author DASI Team
  */
-public class AuthentifierClientAction extends Action {
+public class AuthentifierAction extends Action {
 
     @Override
     public void executer(HttpServletRequest request) {
-        
+         
         String login = request.getParameter("email");
         String password = request.getParameter("password");
 
