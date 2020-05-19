@@ -25,8 +25,8 @@ public class ListeMediumSerialisation extends Serialisation {
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         List<Medium> listMedium = (List<Medium>)request.getAttribute("medium");
-        
-        JsonArray container = new JsonArray();
+        JsonObject container = new JsonObject();
+        JsonArray listMediums = new JsonArray();
 
         for(Medium m : listMedium){
             JsonObject jsonMedium = new JsonObject();
@@ -44,8 +44,9 @@ public class ListeMediumSerialisation extends Serialisation {
             }else{
                 jsonMedium.addProperty("type","cartomancien");
             }
-            container.add(jsonMedium);
+            listMediums.add(jsonMedium);
         }
+        container.add("listMediums",listMediums);
 
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();

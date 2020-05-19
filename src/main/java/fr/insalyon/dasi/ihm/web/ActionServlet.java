@@ -5,10 +5,13 @@ import fr.insalyon.dasi.ihm.web.action.Action;
 import fr.insalyon.dasi.ihm.web.action.AuthentifierAction;
 import fr.insalyon.dasi.ihm.web.action.InscriptionAction;
 import fr.insalyon.dasi.ihm.web.action.ListeMediumAction;
+import fr.insalyon.dasi.ihm.web.action.InfosClientAction;
+import fr.insalyon.dasi.ihm.web.action.ConsultationAction;
 import fr.insalyon.dasi.ihm.web.serialisation.ListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnexionSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscriptionSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.InfosClientSerialisation;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,6 +63,14 @@ public class ActionServlet extends HttpServlet {
                 case "demanderMedium":
                     action = new ListeMediumAction();
                     serialisation = new ListeMediumSerialisation();
+                    break;
+                case "infosClient":
+                    action = new InfosClientAction();
+                    serialisation = new InfosClientSerialisation();
+                    break;
+                case "infosEmploye":
+                    action = new ConsultationAction();
+                    serialisation = new InfosEmployeSerialisation();
                     break;
             }
         }
