@@ -7,11 +7,20 @@ import fr.insalyon.dasi.ihm.web.action.InscriptionAction;
 import fr.insalyon.dasi.ihm.web.action.ListeMediumAction;
 import fr.insalyon.dasi.ihm.web.action.InfosClientAction;
 import fr.insalyon.dasi.ihm.web.action.ConsultationAction;
+import fr.insalyon.dasi.ihm.web.action.DeconnexionAction;
+import fr.insalyon.dasi.ihm.web.action.DemanderConsultationAction;
+import fr.insalyon.dasi.ihm.web.action.PredictionAction;
+import fr.insalyon.dasi.ihm.web.action.TerminerConsultationAction;
 import fr.insalyon.dasi.ihm.web.serialisation.ListeMediumSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.ConnexionSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.ConsultationSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.DeconnexionSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.DemanderConsultationSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InscriptionSerialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.Serialisation;
 import fr.insalyon.dasi.ihm.web.serialisation.InfosClientSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.PredictionSerialisation;
+import fr.insalyon.dasi.ihm.web.serialisation.TerminerConsultationSerialisation;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -70,7 +79,23 @@ public class ActionServlet extends HttpServlet {
                     break;
                 case "infosEmploye":
                     action = new ConsultationAction();
-                    serialisation = new InfosEmployeSerialisation();
+                    serialisation = new ConsultationSerialisation();
+                    break;
+                case "deconnexion":
+                    action = new DeconnexionAction();
+                    serialisation = new DeconnexionSerialisation();
+                    break;
+                case "terminerConsultation":
+                    action = new TerminerConsultationAction ();
+                    serialisation = new TerminerConsultationSerialisation();
+                    break;
+                case "demanderConsultation":
+                    action = new DemanderConsultationAction();
+                    serialisation = new DemanderConsultationSerialisation();
+                    break;
+                case "obtenirPredictions":
+                    action = new PredictionAction();
+                    serialisation= new PredictionSerialisation();
                     break;
             }
         }
